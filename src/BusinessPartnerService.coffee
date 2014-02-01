@@ -1,16 +1,9 @@
 http = require 'http'
-url = require 'url'
+BasicService = require './BasicService.coffee'
 
-exports.createBusinessPartnerService = (bpServiceUrl)->
+class BusinessPartnerService extends BasicService
 
-	getMembers:(bpid,fun)->
-		data = ""
-		req = http.get bpServiceUrl+bpid, (res) ->
-			res.setEncoding('utf8')
-			res.on 'data', (chunk)->
-				data = data + chunk
-			res.on 'end', ()->
-				fun(null,JSON.parse(data))
-		.on 'error', (e)->	
-			fun(e.message,null)
-		req.end()
+	getMembers:(id,fun)->
+		@getById id,fun
+
+module.exports = BusinessPartnerService

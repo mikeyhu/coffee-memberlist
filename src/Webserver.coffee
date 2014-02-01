@@ -6,7 +6,7 @@ exports.createWebServer = (port,bpService,userService)->
 
 	app.get '/members/:bpid', (req, res)->
 		bpid = req.params.bpid
-		bpService.getMembers bpid,(err,result)=>
+		bpService.getMembers bpid,(err,result)->
 			userService.getUserInformation result,(err,result)->
 				res.json(result)
 
