@@ -1,16 +1,26 @@
 http = require 'http'
 url = require 'url'
 
-exports.createUserService = (userServiceUrl)->
+exports.createUserService = (serviceUrl)->
 	
 	getUserInformation:(userList,fun)->
-		fun(null,userList)
 
+		checkFinished = (err,data)->
+			console.log "Error: #{err}" if err
+			console.log "Ending:#{data.id}"
+			finishedList.push data
+			console.log("finishedList.size:#{finishedList.length} expected:#{userList.length}")
+			if finishedList.length == userList.length
+				fun(null,finishedList)
 
+		finishedList = []
 
-	getMembers:(bpid,fun)->
+		@getSingleUser(id,checkFinished) for id in userList
+
+	getSingleUser:(id,fun)->
+		console.log "Starting:#{id}"
 		data = ""
-		req = http.get bpServiceUrl+bpid, (res) ->
+		req = http.get serviceUrl+id, (res) ->
 			res.setEncoding('utf8')
 			res.on 'data', (chunk)->
 				data = data + chunk
