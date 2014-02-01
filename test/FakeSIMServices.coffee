@@ -2,7 +2,7 @@ express = require 'express'
 
 PORT = 7777
 DELAY = 100
-BP_SIZE = 10
+BP_SIZE = 100
 
 app = express()
 app.get '/user/:id', (req,res)->
@@ -16,7 +16,7 @@ app.get '/user/:id', (req,res)->
 	setTimeout(writeResponse,DELAY)
 
 app.get '/bps/:bpid',(req,res)->
-	result = (num for num in [1..BP_SIZE])
+	result = ({id:num,role:"ADMIN"} for num in [1..BP_SIZE])
 	res.json(result)
 				
 app.listen PORT, -> console.log "Fake Member Service is listening on #{PORT}\nPress CTRL-C to stop server."
