@@ -1,0 +1,23 @@
+{
+  "name": "coffee-memberlist",
+  "version": "0.0.1",
+  "author": "Mike Hughes",
+  "dependencies": {
+    "coffee-script": "1.6.x",
+    "express": "3.0.x"
+  },
+  "devDependencies": {
+    "chai": "1.5.x",
+    "chai-as-promised": "3.2.x",
+    "zombie": "1.4.x",
+    "rsvp": "1.2.x",
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt-exec": "~0.4.0"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
+}
